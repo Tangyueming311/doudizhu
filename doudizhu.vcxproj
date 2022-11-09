@@ -127,7 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="doudizhu.cpp" />
+    <ClCompile Include="ai.cpp" />
+    <ClCompile Include="card.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="function.cpp" />
+    <ClCompile Include="player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ai.h" />
+    <ClInclude Include="function.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="card.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
