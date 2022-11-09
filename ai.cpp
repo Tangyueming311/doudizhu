@@ -2,8 +2,9 @@
 #include"player.h"
 #include"ai.h"
 using namespace std;
-int ai::getLL() { return ifLandlord; }
 
+
+int ai::getLL() { return ifLandlord; }
 int* ai::getHand() { return handCard; }
 void ai::setLL(int a) { ifLandlord = a; }
 
@@ -11,7 +12,7 @@ void ai::setLL(int a) { ifLandlord = a; }
 
 
 
-
+//排序函数
 void ai::order() {
 	int min;
 	int temp;
@@ -27,6 +28,7 @@ void ai::order() {
 		swap(handCard[j], handCard[temp]);
 	}
 }
+//设置手牌
 void ai::setCard(int* a)
 {
 	int j = 0;
@@ -36,7 +38,7 @@ void ai::setCard(int* a)
 
 }
 
-
+//设置地主牌
 void ai::setLLcard(int* a) {
 	for (int i = 0; i < 3; i++) {
 		handCard[i] = a[i];
