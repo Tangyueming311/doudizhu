@@ -8,6 +8,8 @@
 using namespace std;
 extern int temp[20] = { 0 };       //全局变量，temp数组为出了牌后，暂存牌的数组
 extern int tempFunction = 0;       //全局变量，tempFunction为暂存的牌的类型
+extern int tempchu = 2;            //全局变量，tempchu为判断是否是跟牌阶段，0,1,是跟牌，2是新出牌
+extern int boom = 0;               //全局变量，boom为判断是否是炸弹，0不是，1是
 int main() {
 
 	menu();         //调用菜单        
@@ -97,27 +99,21 @@ int main() {
 
 
 
-	cout << "请输入你要打出的手牌." << endl;
+	//cout << "请输入你要打出的手牌." << endl;
 
 
 
 
 
-	//此为第一个回合，谁是地主谁先出牌
-	if (b.getLL() == 1) {
-		b.chuCardFirst();
-		//b1.chuCard();
-		//b2.chuCard();
-	}
 
 
-	cout << endl;
+	//cout << endl;
 
-	cout << "您的手牌为：";
-	for (int i = 0; i < 20; i++)
-	{
-		cout << b.getHand()[i] << " ";
-	}
+	//cout << "您的手牌为：";
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	cout << b.getHand()[i] << " ";
+	//}
 
 	//测试代码
 	cout << endl<<"temp为： ";
@@ -125,26 +121,89 @@ int main() {
 	{
 		cout << temp[i] << " ";
 	}
+	cout << endl;
+
+
+
+	//这里的tempchu这么理解，初始值为2，调用chuFirst（）函数，tempchu=0；tempchu=0，调用chucard（）函数，如果打出，仍tempchu=0；
+	//tempchu=0，调用chucard（），若不出，则tempchu+1，值为1；因为tempchu=1，下一步仍调用chucard（）；如果这一次调用chucard（）后仍不出，tempchu+1，
+	//tempchu=2，则调用chufirst（）函数。
+	while (1) {
+		if (b.getLL() == 1) {
+			if (tempchu == 0||tempchu==1) {
+				b.chuCard();
+				
+			}
+			else {
+				boom = 0;
+				b.chuCardFirst();
+			}
+			
+			//测试代码
+			cout << endl << "temp为： ";
+			for (int i = 0; i < 20; i++)
+			{
+				cout << temp[i] << " ";
+			}
+			cout << endl;
+			//
+			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+
+
+			if (tempchu == 0 || tempchu == 1) {
+				b.chuCard();
+			}
+			else {
+				boom;
+				b.chuCardFirst();
+			}
+
+			//测试代码
+			cout << endl << "temp为： ";
+			for (int i = 0; i < 20; i++)
+			{
+				cout << temp[i] << " ";
+			}
+			cout << endl;
+			//
+			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+
+
+			if (tempchu == 0 || tempchu == 1) {
+				b.chuCard();
+			}
+			else {
+				boom;
+				b.chuCardFirst();
+			}
+
+			//测试代码
+			cout << endl << "temp为： ";
+			for (int i = 0; i < 20; i++)
+			{
+				cout << temp[i] << " ";
+			}
+			cout << endl;
+			//
+			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+		}
+
+
+
+
+	}
 
 
 
 
 
-	//以下是第2个以及以后的回合
-	//while (1) {
-	//	if (b.getLL() == 1) {
-	//		b.chuCard();   //仅指出牌  judge()和right()    //判断是否符合规则,以及能否打出  //以及是否打完
-	//		//b1.chuCard();
-	//		//b2.chuCard();
-	//	}
-	//	else if (b1.getLL() == 1) {
-	//		//b1.chuCard();
-	//		b.chuCard();   //仅指出牌  judge()和right()    //判断是否符合规则,以及能否打出
-	//		//b2.chuCard();
-	//	}
 
 
-	//}
+
+
+
+
+
 
 
 }
