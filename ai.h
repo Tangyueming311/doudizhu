@@ -15,7 +15,7 @@ public:
 	void setCard(int* a);
 	void setLLcard(int* a);
 	void chuCard();
-
+	void chuCardFirst();
 };
 
 

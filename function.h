@@ -11,6 +11,8 @@
 void HideCursor();
 void gotoxy(unsigned char x, unsigned char y);
 void menu();
+
+
 int right(int* a, int* b, int c);
 int rightFirst(int* a);
 int singleCard(int* a, int* b);
@@ -29,6 +31,7 @@ int ifShunzi2(int* a);
 int ifShunzi3(int* a);
 int plane1(int* a);
 int plane2(int* a);
+
 extern int temp[20];
 extern int tempFunction;
 extern int tempchu;

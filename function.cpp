@@ -42,6 +42,8 @@ void menu() {
 }
 
 
+
+
 //单顺子判断（包括多个数量）
 //形参a为数组类型，为要打出的牌
 //return值为0或1，1代表是顺子，0代表不是
@@ -354,7 +356,6 @@ int rightFirst(int* a) {
 		if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
 			tempFunction = 100;         //暂存值的牌的类型为炸弹	
 
-			boom = 1;
 			cout << "你直接打出了炸弹！!!!\n";
 			return 1;
 		}
@@ -674,7 +675,7 @@ int right(int* a, int* b, int c)
 
 	else if (num != num2 && num == 4) {
 		if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
-			boom = 1;
+			
 			cout << "炸弹压死！！！！" << endl;
 			return 1;
 		}
@@ -686,7 +687,7 @@ int right(int* a, int* b, int c)
 	}
 	else if (num != num2 && num == 2) {
 		if (a[0] == 16 && a[1] == 17) {
-			boom = 2;
+			
 			cout << "王炸绝杀！！！！！"<<endl;
 			return 1;
 		}
@@ -704,7 +705,7 @@ int right(int* a, int* b, int c)
 			if (singleCard(a, b) == 1)
 			{
 				cout << "单牌" << endl;
-				tempFunction = 1;           
+				         
 				return 1;
 			}
 			else {
@@ -715,8 +716,7 @@ int right(int* a, int* b, int c)
 		}
 
 		else if (num == 2) {
-			if (a[0] == 16 && a[1] == 17) {
-				boom = 2;
+			if (a[0] == 16 && a[1] == 17) {				
 				cout << "王炸绝杀！！！！！" << endl;
 				return 1;
 			}
@@ -724,7 +724,7 @@ int right(int* a, int* b, int c)
 				if (doubleCard(a, b) == 1)
 				{
 					cout << "对牌" << endl;
-					tempFunction = 2;
+					
 					return 1;
 				}
 				else if (doubleCard(a, b) == 0) {
@@ -744,7 +744,7 @@ int right(int* a, int* b, int c)
 			if (threeCard(a, b) == 1)
 			{
 				cout << "三牌" << endl;
-				tempFunction = 3;
+				
 				return 1;
 			}
 			else if (threeCard(a, b) == 0) {
@@ -766,7 +766,7 @@ int right(int* a, int* b, int c)
 				}
 				else if (BoomCard(a, b) == 1) {
 					cout << "又是炸弹！！！" << endl;
-					tempFunction =100 ;
+					
 					return 1;
 				}
 				else if (BoomCard(a, b) == 2) {
@@ -776,7 +776,7 @@ int right(int* a, int* b, int c)
 			}
 			else {
 				if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
-					boom = 1;
+					
 					cout << "炸弹压死！！！！" << endl;
 					return 1;
 				}

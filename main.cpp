@@ -45,18 +45,7 @@ int main() {
 	for (int i = 0; i < 20; i++)
 	{
 		cout << b.getHand()[i] << " ";
-	}	 //cout << endl;
-	//for(int i=0;i<20;i++){
-	   //cout<< b1.getHand()[i]<<" ";
-	   //
-	//}
-	//cout << endl;
- //   for(int i=0;i<20;i++){
-	   //cout<< b2.getHand()[i]<<" ";
-	   //
-	//}
-
-
+	}	
 	cout << endl;
 
 	cout << "你要叫地主吗？" << endl;
@@ -96,19 +85,19 @@ int main() {
 		cout << b.getHand()[i] << " ";
 	}
 
-	//测试代码
-	cout << endl<<"temp为： ";
-	for (int i = 0; i < 20; i++)
-	{
-		cout << temp[i] << " ";
-	}
-	cout << endl;
+
+
+
+
+
 
 
 
 	//这里的tempchu这么理解，初始值为2，调用chuFirst（）函数，调用后赋tempchu=0；如果tempchu=0，调用chucard（）函数，如果打出，仍tempchu=0；
 	//tempchu=0，调用chucard（），若不出，则tempchu+1，值为1；因为tempchu=1，下一步仍调用chucard（）；如果这一次调用chucard（）后仍不出，tempchu+1，
 	//tempchu=2，则调用chufirst（）函数。
+
+	//这里是测试的游戏进程
 	while (1) {
 		if (b.getLL() == 1) {
 			if (tempchu == 0||tempchu==1) {
@@ -120,14 +109,7 @@ int main() {
 				b.chuCardFirst();
 			}
 			
-			////测试代码
-			//cout << endl << "temp为： ";
-			//for (int i = 0; i < 20; i++)
-			//{
-			//	cout << temp[i] << " ";
-			//}
-			//cout << endl;
-			////
+			
 			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
 
 
@@ -139,42 +121,66 @@ int main() {
 				b.chuCardFirst();
 			}
 
-			////测试代码
-			//cout << endl << "temp为： ";
-			//for (int i = 0; i < 20; i++)
-			//{
-			//	cout << temp[i] << " ";
-			//}
-			//cout << endl;
-			////
+			
 			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
 
 
 			if (tempchu == 0 || tempchu == 1) {
 				b.chuCard();
 			}
-			else {
-				boom;
+			else {				
 				b.chuCardFirst();
 			}
 
-			////测试代码
-			//cout << endl << "temp为： ";
-			//for (int i = 0; i < 20; i++)
-			//{
-			//	cout << temp[i] << " ";
-			//}
-			//cout << endl;
-			////
+			
 			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
 		}
-
-
-
 
 	}
 
 
+	//这里是加上ai的游戏正式进程，建议采用跟提供的player类的chuCard（），chuCardFirst()结构类似的函数
+	//自己完成吧！，开始的时候记得把上面的测试进程注释掉
+
+	while (1) {
+		if (b.getLL() == 1) {
+			if (tempchu == 0 || tempchu == 1) {
+				b.chuCard();
+
+			}
+			else {
+
+				b.chuCardFirst();
+			}
+
+
+			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+
+
+			if (tempchu == 0 || tempchu == 1) {
+				b1.chuCard();
+			}
+			else {
+
+				b1.chuCardFirst();
+			}
+
+
+			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+
+
+			if (tempchu == 0 || tempchu == 1) {
+				b2.chuCard();
+			}
+			else {
+				b2.chuCardFirst();
+			}
+
+
+			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+		}
+
+	}
 
 
 
