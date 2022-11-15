@@ -101,9 +101,6 @@ void player::chuCardFirst() {
 		}
 
 	} while (rightFirst(y) == 0);
-
-
-
 	
 		//将打出的牌进行暂存
 		for (int i = 0; i < 20; i++) {
@@ -117,11 +114,15 @@ void player::chuCardFirst() {
 			i++;
 		}
 		order();
+
+
+
 		tempchu = 0;
-		cout << "打出了 ";
 
 
-		//测试
+
+//测试
+		cout << "打出了 ";	
 		i = 0;
 		while (y[i] != 0) {
 			cout << y[i] << " ";

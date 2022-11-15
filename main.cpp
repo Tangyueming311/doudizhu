@@ -96,25 +96,6 @@ int main() {
 		cout << b.getHand()[i] << " ";
 	}
 
-
-
-
-	//cout << "请输入你要打出的手牌." << endl;
-
-
-
-
-
-
-
-	//cout << endl;
-
-	//cout << "您的手牌为：";
-	//for (int i = 0; i < 20; i++)
-	//{
-	//	cout << b.getHand()[i] << " ";
-	//}
-
 	//测试代码
 	cout << endl<<"temp为： ";
 	for (int i = 0; i < 20; i++)
@@ -125,7 +106,7 @@ int main() {
 
 
 
-	//这里的tempchu这么理解，初始值为2，调用chuFirst（）函数，tempchu=0；tempchu=0，调用chucard（）函数，如果打出，仍tempchu=0；
+	//这里的tempchu这么理解，初始值为2，调用chuFirst（）函数，调用后赋tempchu=0；如果tempchu=0，调用chucard（）函数，如果打出，仍tempchu=0；
 	//tempchu=0，调用chucard（），若不出，则tempchu+1，值为1；因为tempchu=1，下一步仍调用chucard（）；如果这一次调用chucard（）后仍不出，tempchu+1，
 	//tempchu=2，则调用chufirst（）函数。
 	while (1) {
@@ -135,18 +116,37 @@ int main() {
 				
 			}
 			else {
-				boom = 0;
+				
 				b.chuCardFirst();
 			}
 			
-			//测试代码
-			cout << endl << "temp为： ";
-			for (int i = 0; i < 20; i++)
-			{
-				cout << temp[i] << " ";
+			////测试代码
+			//cout << endl << "temp为： ";
+			//for (int i = 0; i < 20; i++)
+			//{
+			//	cout << temp[i] << " ";
+			//}
+			//cout << endl;
+			////
+			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+
+
+			if (tempchu == 0 || tempchu == 1) {
+				b.chuCard();
 			}
-			cout << endl;
-			//
+			else {
+				
+				b.chuCardFirst();
+			}
+
+			////测试代码
+			//cout << endl << "temp为： ";
+			//for (int i = 0; i < 20; i++)
+			//{
+			//	cout << temp[i] << " ";
+			//}
+			//cout << endl;
+			////
 			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
 
 
@@ -158,33 +158,14 @@ int main() {
 				b.chuCardFirst();
 			}
 
-			//测试代码
-			cout << endl << "temp为： ";
-			for (int i = 0; i < 20; i++)
-			{
-				cout << temp[i] << " ";
-			}
-			cout << endl;
-			//
-			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
-
-
-			if (tempchu == 0 || tempchu == 1) {
-				b.chuCard();
-			}
-			else {
-				boom;
-				b.chuCardFirst();
-			}
-
-			//测试代码
-			cout << endl << "temp为： ";
-			for (int i = 0; i < 20; i++)
-			{
-				cout << temp[i] << " ";
-			}
-			cout << endl;
-			//
+			////测试代码
+			//cout << endl << "temp为： ";
+			//for (int i = 0; i < 20; i++)
+			//{
+			//	cout << temp[i] << " ";
+			//}
+			//cout << endl;
+			////
 			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
 		}
 

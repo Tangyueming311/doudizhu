@@ -189,13 +189,35 @@ int plane1(int* b) {
 	}
 	//遍历数组，将三个相同的牌都赋值为1（不赋值为0是因为空缺位为0，对计数有影响），赋值一次temp+1;
 	//for只到18是因为担心有溢出
+	//数组point是为了储存出现的三张相同的牌的牌面，因为飞机需要连续
+	int point[5] = { 0 }; 
 	int temp = 0;
 	for (int i = 0; i < 18; i++) {
 		if (a[i] == a[i + 1] && a[i + 1] == a[i + 2] && a[i] != 0 && a[i] != 1) {
+			point[temp] = a[i];
 			a[i] = 1, a[i + 1] = 1, a[i + 2] = 1;
+
 			temp++;
 		}
 	}
+
+	//比较point数组里储存的数字，
+	//这一段是让point数组逐个减去point[0]加i，如果最后全都为0，则代表都是依次加1
+	int i = 0;
+	int Temp = point[0];
+	while (point[i] != 0) {
+		point[i] = point[i] - Temp - i;
+		i++;
+	}
+
+	//如果point[]数组所有项都为0，则确实是飞机，返回1，相反则返回0
+	int temp1 = 1;
+	for (int i = 0; i < 5; i++) {
+		if (point[i] != 0) {
+			temp1 = 0;
+		}
+	}
+
 	//再次遍历数组，将所有不为0，不为1的数的数量数出来，与temp比较，相同的话即为真
 	int temp2 = 0;
 	for (int i = 0; i < 20; i++) {
@@ -204,7 +226,7 @@ int plane1(int* b) {
 
 		}
 	}
-	if (temp == temp2) {
+	if (temp == temp2&&temp1==1) {
 		return 1;
 	}
 	else return 0;
@@ -223,10 +245,12 @@ int plane2(int* b) {
 
 	//遍历数组，将三个相同的牌都赋值为1（不赋值为0是因为空缺位为0，对计数有影响），赋值一次temp+1;
 	//for只到18是因为担心有溢出
+	int point[5] = { 0 };
 	int temp = 0;
 	for (int i = 0; i < 18; i++) {
 		if (a[i] == a[i + 1] && a[i + 1] == a[i + 2] && a[i] != 0 && a[i] != 1) {
 			a[i] = 1, a[i + 1] = 1, a[i + 2] = 1;
+			point[temp] = a[i];
 			temp++;
 		}
 	}
@@ -241,22 +265,39 @@ int plane2(int* b) {
 			j++;
 		}
 	}
+	//比较point数组里储存的数字，
+	//这一段是让point数组逐个减去point[0]加i，如果最后全都为0，则代表都是依次加1
+	int i = 0;
+	int Temp = point[0];
+	while (point[i] != 0) {
+		point[i] = point[i] - Temp - i;
+		i++;
+	}
+
+	//如果point[]数组所有项都为0，则确实是飞机，返回1，相反则返回0
+	int temp1 = 1;
+	for (int i = 0; i < 5; i++) {
+		if (point[i] != 0) {
+			temp1 = 0;
+		}
+	}
+
 	//此时遍历数组b，把对子全部进行判断
 	//遍历数组b，下标每次+2，b[i]应等于b[i+1],遍历完毕则flag=1，中间出现不等于则flag=0
 	//循环一次temp2加一，用来记录对子数量，如果对子数量与三张牌数量一样且flag=1，则确实是飞机捏，返回1
 	int flag = 1;
-	int i = 0;
+	int k = 0;
 	int temp2 = 0;
-	while (c[i] != 0) {
-		if (c[i] != c[i + 1]) {
+	while (c[k] != 0) {
+		if (c[k] != c[k + 1]) {
 			flag = 0;
 			break;
 		}
-		i = i + 2;
+		k = k + 2;
 		temp2++;
 	}
 
-	if (flag == 1 && temp == temp2) {
+	if (flag == 1 && temp == temp2&&temp1==1) {
 		return 1;
 	}
 	else return 0;
@@ -314,7 +355,7 @@ int rightFirst(int* a) {
 			tempFunction = 100;         //暂存值的牌的类型为炸弹	
 
 			boom = 1;
-			cout << "你打出了炸弹！\n";
+			cout << "你直接打出了炸弹！!!!\n";
 			return 1;
 		}
 		else if ((a[0] == a[1] && a[1] == a[2] && a[2] != a[3]) || (a[0] != a[1] && a[1] == a[2] && a[2] == a[3])) {
@@ -598,10 +639,6 @@ int rightFirst(int* a) {
 
 }
 
-
-
-
-
 //判断要打出的牌是否可以打出
 // 属于跟随出牌
 //形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌；形参c为int类型，为牌的类型
@@ -624,14 +661,43 @@ int right(int* a, int* b, int c)
 	}
 	
 //如果要打出牌的数量与暂存牌数量不同，明显不能打
-	if (num != num2) {    
+	if (num != num2&&num!=4&&num!=2) {    
 		cout << "数量不对" << endl;
 		cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
 		return 0;
 	}
 
 
+
 //分别判断各种情况
+
+
+	else if (num != num2 && num == 4) {
+		if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
+			boom = 1;
+			cout << "炸弹压死！！！！" << endl;
+			return 1;
+		}
+		else {
+			cout << "数量不对" << endl;
+			cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
+			return 0;
+		}
+	}
+	else if (num != num2 && num == 2) {
+		if (a[0] == 16 && a[1] == 17) {
+			boom = 2;
+			cout << "王炸绝杀！！！！！"<<endl;
+			return 1;
+		}
+		else {
+			cout << "数量不对" << endl;
+			cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
+			return 0;
+		}
+	}
+
+
 	else if (num == num2) {
 
 		if (num == 1) {
@@ -649,21 +715,29 @@ int right(int* a, int* b, int c)
 		}
 
 		else if (num == 2) {
-			if (doubleCard(a, b) == 1)
-			{
-				cout << "对牌" << endl;
-				tempFunction = 2;
+			if (a[0] == 16 && a[1] == 17) {
+				boom = 2;
+				cout << "王炸绝杀！！！！！" << endl;
 				return 1;
 			}
-			else if (doubleCard(a, b) == 0) {
+			else {
+				if (doubleCard(a, b) == 1)
+				{
+					cout << "对牌" << endl;
+					tempFunction = 2;
+					return 1;
+				}
+				else if (doubleCard(a, b) == 0) {
 
-				cout << "小了" << endl;
-				return 0;
+					cout << "小了" << endl;
+					return 0;
+				}
+				else if (doubleCard(a, b) == 2) {
+					cout << "不符合规范" << endl;
+					return 0;
+				}
 			}
-			else if (doubleCard(a, b) == 2) {
-				cout << "不符合规范" << endl;
-				return 0;
-			}
+			
 		}
 
 		else if (num == 3) {
@@ -683,15 +757,601 @@ int right(int* a, int* b, int c)
 				return 0;
 			}
 		}
-	}
 
+		else if (num == 4) {
+			if (a[0]==a[1]&&a[1]==a[2]&&a[2]==a[3]&&b[0]==b[1]&&b[1]==b[2]&&b[2]==b[3]) {
+				if (BoomCard(a, b) == 0) {
+					cout << "小了" << endl;
+					return 0;
+				}
+				else if (BoomCard(a, b) == 1) {
+					cout << "又是炸弹！！！" << endl;
+					tempFunction =100 ;
+					return 1;
+				}
+				else if (BoomCard(a, b) == 2) {
+					cout << "不符合规范" << endl;
+					return 0;
+				}
+			}
+			else {
+				if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
+					boom = 1;
+					cout << "炸弹压死！！！！" << endl;
+					return 1;
+				}
+
+				else if (plane1Card(a, b) == 0) {
+					cout << "小了" << endl;
+					return 0;
+				}
+				else if (plane1Card(a, b) == 1) {
+					cout << "三带一" << endl;
+					return 1;
+				}
+				else if (plane1Card(a, b) == 2) {
+					cout << "不符合规范" << endl;
+					return 0;
+				}
+			}
+		}
+
+		else if (num == 5) {
+			if (plane1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane1Card(a, b) == 1) {
+				cout << "三带一" << endl;
+				return 1;
+			}
+			else if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+
+			else  {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+		}
+
+		else if (num == 6) {
+		    if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+			else if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else if (ifShunzi3Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi3Card(a, b) == 1) {
+				cout << "飞机没翅膀" << endl;
+				return 1;
+			}
+			else  {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+
+		else if (num == 7) {
+		    if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+			else {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+		else if (num == 8) {
+		    if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+			else if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else if (plane2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane2Card(a, b) == 1) {
+				cout << "飞机" << endl;
+				return 1;
+			}
+			else {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+		 
+        }
+
+		else if (num == 9) {
+		    if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+			else if (ifShunzi3Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi3Card(a, b) == 1) {
+				cout << "飞机没翅膀" << endl;
+				return 1;
+			}
+			else  {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+        }
+		else if (num == 10) {
+		    if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+			else if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else if (plane2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane2Card(a, b) == 1) {
+				cout << "飞机" << endl;
+				return 1;
+			}
+			else {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+        }
+		else if (num == 11) {
+		    if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+			else {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+		else if (num == 12) {
+		    if (ifShunzi1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi1Card(a, b) == 1) {
+				cout << "顺子" << endl;
+				return 1;
+			}
+			else if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else if (ifShunzi3Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi3Card(a, b) == 1) {
+				cout << "飞机没翅膀" << endl;
+				return 1;
+			}
+			else if (plane1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane1Card(a, b) == 1) {
+				cout << "三带一" << endl;
+				return 1;
+			}
+			else  {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+		else if (num == 14) {
+		    if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+		else if (num == 15) {
+		    if (ifShunzi3Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi3Card(a, b) == 1) {
+				cout << "飞机没翅膀" << endl;
+				return 1;
+			}
+			else if (plane2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane2Card(a, b) == 1) {
+				cout << "飞机" << endl;
+				return 1;
+			}
+			else {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+        }
+		else if (num == 16) {
+		  
+		    if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else if (plane1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane1Card(a, b) == 1) {
+				cout << "三带一" << endl;
+				return 1;
+			}
+			else  {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+		else if (num == 18) {
+
+		    if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else if (ifShunzi3Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi3Card(a, b) == 1) {
+				cout << "飞机没翅膀" << endl;
+				return 1;
+			}
+			else  {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+		else if (num == 20) {
+		  
+		    if (ifShunzi2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (ifShunzi2Card(a, b) == 1) {
+				cout << "连对" << endl;
+				return 1;
+			}
+			else if (plane1Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane1Card(a, b) == 1) {
+				cout << "三带一" << endl;
+				return 1;
+			}
+			else if (plane2Card(a, b) == 0) {
+				cout << "小了" << endl;
+				return 0;
+			}
+			else if (plane2Card(a, b) == 1) {
+				cout << "飞机" << endl;
+				return 1;
+			}
+			else  {
+				cout << "不符合规范" << endl;
+				return 0;
+			}
+
+        }
+		else  {
+		cout << "不符合规范" << endl;
+		return 0;
+	    }
+
+
+	}
+	
 
 
 }
 
+
+//三顺子判断
+//形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
+int ifShunzi3Card(int* a, int* b) {
+	if (ifShunzi3(a) == 1) {
+		//在函数内临时建立两个数组，将形参复制过来
+		//temp1数组对应a，为要打出的牌；tenp2数组对应b，为暂存的牌
+		int temp1[20] = { 0 };
+		int temp2[20] = { 0 };
+		for (int i = 0; i < 20; i++) {
+			temp1[i] = a[i];
+		}
+		for (int i = 0; i < 20; i++) {
+			temp2[i] = b[i];
+		}
+
+		if (temp1[0] > temp2[0]) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+
+
+	}
+	else {
+		return 2;        //不符合规范的出牌返回2值
+	}
+}
+//双顺子判断
+//形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
+int ifShunzi2Card(int* a, int* b) {
+	if (ifShunzi2(a) == 1) {
+		//在函数内临时建立两个数组，将形参复制过来
+		//temp1数组对应a，为要打出的牌；tenp2数组对应b，为暂存的牌
+		int temp1[20] = { 0 };
+		int temp2[20] = { 0 };
+		for (int i = 0; i < 20; i++) {
+			temp1[i] = a[i];
+		}
+		for (int i = 0; i < 20; i++) {
+			temp2[i] = b[i];
+		}
+
+		if (temp1[0] > temp2[0]) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+
+
+	}
+	else {
+		return 2;        //不符合规范的出牌返回2值
+	}
+}
+
+
+
+
+
+
+
+//单顺子判断
+//形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
+int ifShunzi1Card(int* a, int* b) {
+	if (ifShunzi1(a) == 1) {
+		//在函数内临时建立两个数组，将形参复制过来
+		//temp1数组对应a，为要打出的牌；tenp2数组对应b，为暂存的牌
+		int temp1[20] = { 0 };
+		int temp2[20] = { 0 };
+		for (int i = 0; i < 20; i++) {
+			temp1[i] = a[i];
+		}
+		for (int i = 0; i < 20; i++) {
+			temp2[i] = b[i];
+		}
+
+		if (temp1[0] > temp2[0]) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+
+
+	}
+	else {
+		return 2;        //不符合规范的出牌返回2值
+	}
+}
+
+
+
+//飞机带双判断
+//形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
+int plane2Card(int* a, int* b) {
+	if (plane2(a) == 1) {
+		//在函数内临时建立两个数组，将形参复制过来
+	    //temp1数组对应a，为要打出的牌；tenp2数组对应b，为暂存的牌
+		int temp1[20] = { 0 };
+		int temp2[20] = { 0 };
+		for (int i = 0; i < 20; i++) {
+			temp1[i] = a[i];
+		}
+		for (int i = 0; i < 20; i++) {
+			temp2[i] = b[i];
+		}
+		//遍历数组，将三个相同的牌都赋值为1（不赋值为0是因为空缺位为0，对计数有影响），赋值一次temp+1;
+        //for只到18是因为担心有溢出
+        //数组point是为了储存出现的三张相同的牌的牌面，因为飞机需要连续
+		int point1 = 0;
+		for (int i = 0; i < 18; i++) {
+			if (temp1[i] == temp1[i + 1] && temp1[i + 1] == temp1[i + 2] && temp1[i] != 0) {
+				point1 = temp1[i];
+				break;
+			}
+		}
+
+		int point2 = 0;
+		for (int i = 0; i < 18; i++) {
+			if (temp2[i] == temp2[i + 1] && temp2[i + 1] == temp2[i + 2] && temp2[i] != 0) {
+				point2 = temp2[i];
+				break;
+			}
+		}
+
+		if (point1 > point2) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+
+	}
+	else {
+		return 2;        //不符合规范的出牌返回2值
+	}
+}
+
+
+
+
+//飞机带单判断
+//形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
+int plane1Card(int* a, int* b) {
+	if (plane1(a) == 1) {
+		//在函数内临时建立两个数组，将形参复制过来
+		//temp1数组对应a，为要打出的牌；tenp2数组对应b，为暂存的牌
+		int temp1[20] = { 0 };
+		int temp2[20] = { 0 };
+		for (int i = 0; i < 20; i++) {
+			temp1[i] = a[i];
+		}
+		for (int i = 0; i < 20; i++) {
+			temp2[i] = b[i];
+		}
+
+	//遍历数组，将三个相同的牌都赋值为1（不赋值为0是因为空缺位为0，对计数有影响），赋值一次temp+1;
+	//for只到18是因为担心有溢出
+	//数组point是为了储存出现的三张相同的牌的牌面，因为飞机需要连续
+		int point1=0;
+		for (int i = 0; i < 18; i++) {
+			if (temp1[i] == temp1[i + 1] && temp1[i + 1] == temp1[i + 2] && temp1[i] != 0 ) {
+				point1 = temp1[i];
+				break;
+			}
+		}
+
+		int point2=0;
+		for (int i = 0; i < 18; i++) {
+			if (temp2[i] == temp2[i + 1] && temp2[i + 1] == temp2[i + 2] && temp2[i] != 0) {
+				point2 = temp2[i];
+				break;
+			}
+		}
+
+		if (point1 > point2) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+
+
+	}
+	else {
+		return 2;        //不符合规范的出牌返回2值
+	}
+}
+
+
+//炸弹判断
+//形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
+int BoomCard(int* a, int* b) {
+	if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3] && tempFunction == 100) {
+		if (a[0] > b[0]) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+	else {
+		return 2;        //不符合规范的出牌返回2值
+	}
+}
+
 //单牌判断
 //形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
-//return值为0或1，为是否能打出
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
 int singleCard(int* a, int* b) {
 	if (a[0] > b[0]) {
 		return 1;
@@ -706,7 +1366,7 @@ int singleCard(int* a, int* b) {
 
 //双牌判断
 //形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
-//return值为0或1，为是否能打出
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
 int doubleCard(int* a, int* b) {
 	if (a[0] == a[1] && tempFunction == 2) {
 
@@ -724,7 +1384,7 @@ int doubleCard(int* a, int* b) {
 
 //三牌判断
 //形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
-//return值为0或1，为是否能打出
+//return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
 int threeCard(int* a, int* b) {
 	if (a[0] == a[1] && a[1] == a[2] && tempFunction == 3) {
 

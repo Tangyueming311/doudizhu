@@ -16,6 +16,13 @@ int rightFirst(int* a);
 int singleCard(int* a, int* b);
 int doubleCard(int* a, int* b);
 int threeCard(int* a, int* b);
+int BoomCard(int* a, int* b);
+int plane1Card(int* a, int* b);
+int plane2Card(int* a,int*b);
+int ifShunzi1Card(int* a,int*b);
+int ifShunzi2Card(int* a,int*b);
+int ifShunzi3Card(int* a,int*b);
+
 void endgame(int * a,int * b ,int * c,int a1, int a2, int a3);
 int ifShunzi1(int* a);
 int ifShunzi2(int* a);
