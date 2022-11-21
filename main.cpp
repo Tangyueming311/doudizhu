@@ -5,14 +5,21 @@
 #include"player.h"
 #include"ai.h"
 #include"card.h"
+#include"draw.h"
 using namespace std;
 extern int temp[20] = { 0 };       //全局变量，temp数组为出了牌后，暂存牌的数组
 extern int tempFunction = 0;       //全局变量，tempFunction为暂存的牌的类型
 extern int tempchu = 2;            //全局变量，tempchu为判断是否是跟牌阶段，0,1,是跟牌，2是新出牌
 extern int boom = 0;               //全局变量，boom为判断是否是炸弹，0不是，1是
-int main() {
 
-	menu();         //调用菜单        
+
+
+int main() {
+    HideCursor();
+
+
+
+	menu();        
 
 
 	//定义一组牌对象，进行洗牌并分为三组基本牌和一组地主牌
@@ -94,10 +101,14 @@ int main() {
 
 
 	//这里的tempchu这么理解，初始值为2，调用chuFirst（）函数，调用后赋tempchu=0；如果tempchu=0，调用chucard（）函数，如果打出，仍tempchu=0；
-	//tempchu=0，调用chucard（），若不出，则tempchu+1，值为1；因为tempchu=1，下一步仍调用chucard（）；如果这一次调用chucard（）后仍不出，tempchu+1，
+	//tempchu=0，调用chucard（），若不出，则tempchu+1，值为1,若出牌，赋0；因为tempchu=1，下一步仍调用chucard（）；如果这一次调用chucard（）后仍不出，tempchu+1，
 	//tempchu=2，则调用chufirst（）函数。
 
 	//这里是测试的游戏进程
+
+
+
+
 	while (1) {
 		if (b.getLL() == 1) {
 			if (tempchu == 0||tempchu==1) {
@@ -107,6 +118,7 @@ int main() {
 			else {
 				
 				b.chuCardFirst();
+				
 			}
 			
 			
@@ -142,45 +154,45 @@ int main() {
 	//这里是加上ai的游戏正式进程，建议采用跟提供的player类的chuCard（），chuCardFirst()结构类似的函数
 	//自己完成吧！，开始的时候记得把上面的测试进程注释掉
 
-	while (1) {
-		if (b.getLL() == 1) {
-			if (tempchu == 0 || tempchu == 1) {
-				b.chuCard();
+	//while (1) {
+	//	if (b.getLL() == 1) {
+	//		if (tempchu == 0 || tempchu == 1) {
+	//			b.chuCard();
 
-			}
-			else {
+	//		}
+	//		else {
 
-				b.chuCardFirst();
-			}
-
-
-			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+	//			b.chuCardFirst();
+	//		}
 
 
-			if (tempchu == 0 || tempchu == 1) {
-				b1.chuCard();
-			}
-			else {
-
-				b1.chuCardFirst();
-			}
+	//		endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
 
 
-			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+	//		if (tempchu == 0 || tempchu == 1) {
+	//			b1.chuCard();
+	//		}
+	//		else {
+
+	//			b1.chuCardFirst();
+	//		}
 
 
-			if (tempchu == 0 || tempchu == 1) {
-				b2.chuCard();
-			}
-			else {
-				b2.chuCardFirst();
-			}
+	//		endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
 
 
-			endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
-		}
+	//		if (tempchu == 0 || tempchu == 1) {
+	//			b2.chuCard();
+	//		}
+	//		else {
+	//			b2.chuCardFirst();
+	//		}
 
-	}
+
+	//		endgame(b.getHand(), b1.getHand(), b2.getHand(), b.getLL(), b1.getLL(), b2.getLL());
+	//	}
+
+	//}
 
 
 

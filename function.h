@@ -32,9 +32,18 @@ int ifShunzi3(int* a);
 int plane1(int* a);
 int plane2(int* a);
 
-extern int temp[20];
-extern int tempFunction;
-extern int tempchu;
-extern int boom;
+
+
+extern int temp[20];            //全局变量，temp数组为出了牌后，暂存牌的数组
+extern int tempFunction;        //全局变量，tempFunction为暂存的牌的类型
+extern int tempchu ;            //全局变量，tempchu为判断是否是跟牌阶段，0,1,是跟牌，2是新出牌
+extern int boom ;               //全局变量，boom为判断是否是炸弹，0不是，1是
+extern int Card[21];            //全局变量，该数组为要打出的手牌的序号
+extern int cardchu[20];         //全局变量，该数组为要打出的手牌
+
+
+
+
+
 
 #endif

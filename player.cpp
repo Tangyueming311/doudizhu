@@ -1,5 +1,6 @@
 #include"function.h"
 #include"player.h"
+#include"draw.h"
 
 using namespace std;
 
@@ -49,68 +50,64 @@ void player::setLLcard(int* a) {
 //首次出牌的函数
 void player::chuCardFirst() {
 	//储存要打出的牌的序号的数组，以0结尾
-	int x[20] = { 0 };   
+    //Card[]  
 	//储存要打出的牌的牌值的数组，以0结尾
-	int y[20] = { 0 };
+    //cardchu[]
 
 	int j = 0;
 	int i = 0;
+
+	//记录手牌有多少张
 	int Temp = 0;
 	
-	cout << endl<<"轮到你先出了"<<endl;
-	
-
-	//该循环是为了实现输入想打出的牌的序号后，判断能否打出，能打出则跳出循环，不能则重复循环
-	do {
-		cout << "请输入你要打的牌的序号" << endl;
-		
-		for (i = 0; i < 20; i++) {
-			x[i] = 0;
-		}
-		for (i = 0; i < 20; i++) {
-			y[i] = 0;
-		}
-        j = 0;
-		do {
-			cin >> x[j];
-
-			//这里防止应该第一次出牌的人不出牌
-			if (x[0] == 0) {
-				cout << endl << "不可以不出牌捏" << endl;
-				continue;
-			}
-			
-			if (x[j] == 0) {
-				break;
-			}			
-
-			j++;
-		} while (1);
- 
-		
-
-		//handCard数组里下标为Temp的元素开始不为0		
-		Temp = 0;
-		while (handCard[Temp] == 0) {			 			  
+	//记录手牌前有多少个0
+	int temp2 = 0;
+	for (int k = 0; k < 20; k++) {
+		if (handCard[k] != 0) {
 			Temp++;
 		}
-		i = 0;
-		while (x[i] != 0) {
-			y[i] = handCard[Temp + x[i] - 1];
-			i++;
+		else {
+			temp2++;
 		}
-
-	} while (rightFirst(y) == 0);
+	}
 	
+	//cout << endl<<"轮到你先出了"<<endl;
+	
+	getNum(Temp, handCard,temp2);
+
+//该函数时创造画布函数，初始画布以及初始手牌，为每一次最开始调用的函数
+//形参a是数字牌面数组，形参cardNum是牌数
+	mapCreat(handCard, Temp,temp2);
+
+	while (1) {
+
+		int a = chooseCard(1);
+
+		if (a == 0) {
+			move();
+		}
+		else if (a == 1) {			
+			break;
+		}
+		
+	}
+
+
+
+	
+	
+
+
+
 		//将打出的牌进行暂存
 		for (int i = 0; i < 20; i++) {
-			temp[i] = y[i];
+			temp[i] = cardchu[i];
 		}
 
 		//将打出了牌后的手牌赋值为0
 		i = 0;
-		while (x[i] != 0) {
-			handCard[Temp + x[i] - 1] = 0;
+		while (Card[i] != 0) {
+			handCard[temp2 + Card[i] - 1] = 0;
 			i++;
 		}
 		order();
@@ -121,34 +118,15 @@ void player::chuCardFirst() {
 
 
 
-//测试
-		cout << "打出了 ";	
-		i = 0;
-		while (y[i] != 0) {
-			cout << y[i] << " ";
-			i++;
-		}
-		cout << endl;
-
-		//测试
-		cout << "您的手牌为：";
-		for (int i = 0; i < 20; i++)
-		{
-			cout << getHand()[i] << " ";
-		}
-		cout << endl;
-
-
-
 }
 
 
 //跟随出牌的函数
 void player::chuCard() {
 	//储存要打出的牌的序号的数组，以0结尾
-	int x[20] = { 0 };
+	//Card[]  
 	//储存要打出的牌的牌值的数组，以0结尾
-	int y[20] = { 0 };
+	//cardchu[]
 
 	int j = 0;
 	int i = 0;
@@ -157,82 +135,65 @@ void player::chuCard() {
 	//flag为是否不出，为1是出牌，为0是不出
 	int flag = 1;
 
-	//该循环是为了实现输入想打出的牌的序号后，判断能否打出，能打出则跳出循环，不能则重复循环
-	do {
-		cout << endl;
-		cout << "请输入你要打的牌的序号" << endl;
-		
-		for ( i = 0; i < 20; i++) {
-			x[i] = 0;
-		}
-
-		j = 0;
-		do {			
-			cin >> x[j];
-			if (x[j] == 0) {
-				break;
-			}
-			j++;
-		} while (1);
-
-		//分出“不出”的情况
-		if (x[0] == 0) {
-			flag = 0;
-			break;
-		}
-
-
-		//handCard数组里下标为Temp的元素开始不为0
-		
-		Temp = 0;
-		while (handCard[Temp] == 0) {			 			 
+	
+	
+	//记录手牌前有多少个0
+	int temp2 = 0;
+	for (int k = 0; k < 20; k++) {
+		if (handCard[k] != 0) {
 			Temp++;
 		}
-
-		i = 0;
-		while (x[i] != 0) {
-			y[i] = handCard[Temp + x[i] - 1];
-			i++;
+		else {
+			temp2++;
 		}
+	}
 
 
-	} while (right(y, temp, tempFunction) == 0);
 
+	getNum(Temp, handCard,temp2);
+	//该函数时创造画布函数，初始画布以及初始手牌，为每一次最开始调用的函数
+	//形参a是数字牌面数组，形参cardNum是牌数
+	mapCreat(handCard, Temp, temp2);
+
+	
+		while (1) {
+			int a = chooseCard(0);
+			if (a == 0) {
+				move();
+			}
+			else if (a == 1) {
+				flag = 1;
+				dachu(cardchu);
+				break;
+			}
+			else if (a == 2) {
+				flag = 0;
+				Sleep(100);
+				break;
+			}
+		}
+	
+	
 
 
 	if (flag == 1) {
         //改变暂存值
 		for (int i = 0; i < 20; i++) {
-			temp[i] = y[i];                                        
+			temp[i] = cardchu[i];                                        
 		}
 
         //将打出了牌后的手牌赋值为0
 		i = 0;
-		while (x[i] != 0) {
-			handCard[Temp + x[i] - 1] = 0;                            
+		while (Card[i] != 0) {
+			handCard[temp2 + Card[i] - 1] = 0;                            
 			i++;
 		}
 		
 		//重新排序
 		order();                                                   
 
-		//测试
-		i = 0;
-		cout << "打出了;";
-		while (y[i] != 0) {
-			cout << y[i] << " ";
-			i++;
-		}
-		tempchu = 0;
-		cout << endl;
 
-		//测试
-		cout << "您的手牌为：";
-		for (int i = 0; i < 20; i++)
-		{
-			cout << getHand()[i] << " ";
-		}
-		cout << endl;
+		tempchu = 0;
 
 	}
 
@@ -242,6 +203,6 @@ void player::chuCard() {
 	//tempchu=2，则调用chufirst（）函数。
 	else {
 		tempchu ++;
-		cout << "不出" << endl;
+		
 	}
 }

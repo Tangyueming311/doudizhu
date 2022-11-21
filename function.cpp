@@ -37,6 +37,11 @@ void menu() {
 	cout << setfill(' ') << setw(35) << "斗地主！！！！" << endl;
 	cout << setfill(' ') << setw(35) << "输入“1”以开始游戏!" << endl;
 	cout << setfill(' ') << setw(35) << "输入“2”以退出游戏!" << endl;
+
+	
+
+
+
 	int i;
 	cin >> i;
 }
@@ -324,18 +329,18 @@ int rightFirst(int* a) {
 
 	if (num == 1) {
 		tempFunction = 1;           //暂存值的牌的类型为单牌	
-		cout << "你打出了单牌\n";
+	//	cout << "你打出了单牌\n";
 		return 1;
 	}
 
 	else if (num == 2) {
 		if (a[0] == a[1]) {
 			tempFunction = 2;      //暂存值的牌的类型为对牌	
-			cout << "你打出了对牌\n";
+	//		cout << "你打出了对牌\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -343,11 +348,11 @@ int rightFirst(int* a) {
 	else if (num == 3) {
 		if (a[0] == a[1] && a[1] == a[2]) {
 			tempFunction = 3;         //暂存值的牌的类型为三牌	
-			cout << "你打出了三张一样的牌\n";
+	//		cout << "你打出了三张一样的牌\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -356,16 +361,16 @@ int rightFirst(int* a) {
 		if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
 			tempFunction = 100;         //暂存值的牌的类型为炸弹	
 
-			cout << "你直接打出了炸弹！!!!\n";
+	//		cout << "你直接打出了炸弹！!!!\n";
 			return 1;
 		}
 		else if ((a[0] == a[1] && a[1] == a[2] && a[2] != a[3]) || (a[0] != a[1] && a[1] == a[2] && a[2] == a[3])) {
 			tempFunction = 4;          //暂存值的牌的类型为三带一
-			cout << "你打出了三带一\n";
+	//		cout << "你打出了三带一\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -373,16 +378,16 @@ int rightFirst(int* a) {
 	else if (num == 5) {
 		if (ifShunzi1(a)) {
 			tempFunction = 51;         //暂存值的牌的类型为顺子-5	
-			cout << "你打出了5张顺子\n";
+	//		cout << "你打出了5张顺子\n";
 			return 1;
 		}
 		if (plane2(a)) {
 			tempFunction = 50;        //暂存值的牌的类型为 三带二
-			cout << "你打出了三带一对\n";
+	//		cout << "你打出了三带一对\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -392,21 +397,21 @@ int rightFirst(int* a) {
 
 		if (ifShunzi1(a)) {
 			tempFunction = 61;         //暂存值的牌的类型为顺子-6
-			cout << "你打出了6张顺子\n";
+	//		cout << "你打出了6张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
 			tempFunction = 62;         //暂存值的牌的类型为双顺子-6
-			cout << "你打出了6张的双顺子\n";
+	//		cout << "你打出了6张的双顺子\n";
 			return 1;
 		}
 		else if (ifShunzi3(a)) {
 			tempFunction = 63;         //暂存值的牌的类型为三顺子-6
-			cout << "你打出了6张的三顺子\n";
+	//		cout << "你打出了6张的三顺子\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -414,11 +419,11 @@ int rightFirst(int* a) {
 	else if (num == 7) {
 		if (ifShunzi1(a)) {
 			tempFunction = 71;         //暂存值的牌的类型为顺子-7
-			cout << "你打出了7张顺子\n";
+	//		cout << "你打出了7张顺子\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -426,21 +431,21 @@ int rightFirst(int* a) {
 	else if (num == 8) {
 		if (ifShunzi1(a)) {
 			tempFunction = 81;         //暂存值的牌的类型为顺子-8
-			cout << "你打出了8张顺子\n";
+	//		cout << "你打出了8张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
 			tempFunction = 82;         //暂存值的牌的类型为双顺子-8
-			cout << "你打出了8张的双顺子\n";
+	//		cout << "你打出了8张的双顺子\n";
 			return 1;
 		}
 		else if (plane1(a)) {
 			tempFunction = 83;         //暂存值的牌的类型为飞机带单-8
-			cout << "你打出了8张的飞机带单\n";
+	//		cout << "你打出了8张的飞机带单\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 
@@ -449,16 +454,16 @@ int rightFirst(int* a) {
 	else if (num == 9) {
 		if (ifShunzi1(a)) {
 			tempFunction = 91;         //暂存值的牌的类型为顺子-9
-			cout << "你打出了9张顺子\n";
+	//		cout << "你打出了9张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi3(a)) {
 			tempFunction = 93;         //暂存值的牌的类型为三顺子-9
-			cout << "你打出了9张的三顺子\n";
+	//		cout << "你打出了9张的三顺子\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -466,21 +471,21 @@ int rightFirst(int* a) {
 	else if (num == 10) {
 		if (ifShunzi1(a)) {
 			tempFunction = 81;         //暂存值的牌的类型为顺子-10
-			cout << "你打出了10张顺子\n";
+	//		cout << "你打出了10张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
 			tempFunction = 82;         //暂存值的牌的类型为双顺子-10
-			cout << "你打出了10张的双顺子\n";
+	//		cout << "你打出了10张的双顺子\n";
 			return 1;
 		}
 		else if (plane2(a)) {
 			tempFunction = 85;         //暂存值的牌的类型为飞机带双-10
-			cout << "你打出了10张的飞机带双\n";
+	//		cout << "你打出了10张的飞机带双\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -488,11 +493,11 @@ int rightFirst(int* a) {
 	else if (num == 11) {
 		if (ifShunzi1(a)) {
 			tempFunction = 111;         //暂存值的牌的类型为顺子-11
-			cout << "你打出了11张顺子\n";
+	//		cout << "你打出了11张顺子\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -500,43 +505,43 @@ int rightFirst(int* a) {
 	else if (num == 12) {
 		if (ifShunzi1(a)) {
 			tempFunction = 121;         //暂存值的牌的类型为顺子-12
-			cout << "你打出了12张顺子\n";
+	//		cout << "你打出了12张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
 			tempFunction = 122;         //暂存值的牌的类型为双顺子-12
-			cout << "你打出了12张的双顺子\n";
+	//		cout << "你打出了12张的双顺子\n";
 			return 1;
 		}
 		else if (plane1(a)) {
 			tempFunction = 125;         //暂存值的牌的类型为飞机带单-12
-			cout << "你打出了12张的飞机带单\n";
+	//		cout << "你打出了12张的飞机带单\n";
 			return 1;
 		}
 		else if (ifShunzi3(a)) {
 			tempFunction = 123;         //暂存值的牌的类型为三顺子-12
-			cout << "你打出了12张的三顺子\n";
+	//		cout << "你打出了12张的三顺子\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
 
 	else if (num == 13) {
-		cout << "出牌不符合规范" << endl;
+	//	cout << "出牌不符合规范" << endl;
 		return 0;
 	}
 
 	else if (num == 14) {
 		if (ifShunzi2(a)) {
 			tempFunction = 142;         //暂存值的牌的类型为双顺子-14
-			cout << "你打出了14张的双顺子\n";
+	//		cout << "你打出了14张的双顺子\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -544,18 +549,18 @@ int rightFirst(int* a) {
 	else if (num == 15) {
 		if (ifShunzi3(a)) {
 			tempFunction = 153;          // 暂存值的牌的类型为三顺子 - 15
-			cout << "你打出了15张的三顺子\n";
+	//		cout << "你打出了15张的三顺子\n";
 			return 1;
 		}
 
 		else if (plane2(a)) {
 			tempFunction = 155;         //暂存值的牌的类型为飞机带双-15
-			cout << "你打出了15张的飞机带双\n";
+	//		cout << "你打出了15张的飞机带双\n";
 			return 1;
 		}
 
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
@@ -563,75 +568,75 @@ int rightFirst(int* a) {
 	else if (num == 16) {
 		if (ifShunzi2(a)) {
 			tempFunction = 162;          // 暂存值的牌的类型为双顺子 - 16
-			cout << "你打出了16张的双顺子牌\n";
+	//		cout << "你打出了16张的双顺子牌\n";
 			return 1;
 		}
 
 		else if (plane1(a)) {
 			tempFunction = 165;         //暂存值的牌的类型为飞机带单-16
-			cout << "你打出了16张的飞机带单\n";
+	//		cout << "你打出了16张的飞机带单\n";
 			return 1;
 		}
 
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
 	else if (num == 17) {
-		cout << "出牌不符合规范" << endl;
+	//	cout << "出牌不符合规范" << endl;
 		return 0;
 	}
 
 	else if (num == 18) {
 		if (ifShunzi3(a)) {
 			tempFunction = 183;          // 暂存值的牌的类型为三顺子 - 18
-			cout << "你打出了18张的三顺子\n";
+	//		cout << "你打出了18张的三顺子\n";
 			return 1;
 		}
 
 		if (ifShunzi2(a)) {
 			tempFunction = 182;          // 暂存值的牌的类型为双顺子 - 18
-			cout << "你打出了18张的双顺子\n";
+	//		cout << "你打出了18张的双顺子\n";
 			return 1;
 		}
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
 
 	else if (num == 19) {
-		cout << "出牌不符合规范" << endl;
+	//	cout << "出牌不符合规范" << endl;
 		return 0;
 	}
 
 	else if (num == 20) {
 		if (ifShunzi2(a)) {
 			tempFunction = 202;          // 暂存值的牌的类型为双顺子 - 20
-			cout << "你打出了20张的双顺子\n";
+	//		cout << "你打出了20张的双顺子\n";
 			return 1;
 		}
 
 		else if (plane1(a)) {
 			tempFunction = 205;         //暂存值的牌的类型为飞机带单-20
-			cout << "你打出了20张的飞机带单\n";
+	//		cout << "你打出了20张的飞机带单\n";
 			return 1;
 		}
 		else if (plane2(a)) {
 			tempFunction = 206;         //暂存值的牌的类型为飞机带双-20
-			cout << "你打出了20张的飞机带双\n";
+	//		cout << "你打出了20张的飞机带双\n";
 			return 1;
 		}
 
 		else {
-			cout << "出牌不符合规范" << endl;
+	//		cout << "出牌不符合规范" << endl;
 			return 0;
 		}
 	}
 
 	else {
-		cout << "出牌不符合规范" << endl;
+	//	cout << "出牌不符合规范" << endl;
 		return 0;
 	}
 
@@ -663,8 +668,8 @@ int right(int* a, int* b, int c)
 	
 //如果要打出牌的数量与暂存牌数量不同，明显不能打
 	if (num != num2&&num!=4&&num!=2) {    
-		cout << "数量不对" << endl;
-		cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
+//		cout << "数量不对" << endl;
+//		cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
 		return 0;
 	}
 
@@ -674,26 +679,26 @@ int right(int* a, int* b, int c)
 
 
 	else if (num != num2 && num == 4) {
-		if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
+		if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]&&temp[0]!=16&&temp[1]!=17) {
 			
-			cout << "炸弹压死！！！！" << endl;
+//			cout << "炸弹压死！！！！" << endl;
 			return 1;
 		}
 		else {
-			cout << "数量不对" << endl;
-			cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
+//			cout << "数量不对" << endl;
+//			cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
 			return 0;
 		}
 	}
 	else if (num != num2 && num == 2) {
 		if (a[0] == 16 && a[1] == 17) {
 			
-			cout << "王炸绝杀！！！！！"<<endl;
+//			cout << "王炸绝杀！！！！！"<<endl;
 			return 1;
 		}
 		else {
-			cout << "数量不对" << endl;
-			cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
+//			cout << "数量不对" << endl;
+//			cout << "暂存牌数：" << num2 << " " << "打出牌数" << num << endl;
 			return 0;
 		}
 	}
@@ -704,36 +709,36 @@ int right(int* a, int* b, int c)
 		if (num == 1) {
 			if (singleCard(a, b) == 1)
 			{
-				cout << "单牌" << endl;
+//				cout << "单牌" << endl;
 				         
 				return 1;
 			}
 			else {
 
-				cout << "小了" << endl;
+//				cout << "小了" << endl;
 				return 0;
 			}
 		}
 
 		else if (num == 2) {
 			if (a[0] == 16 && a[1] == 17) {				
-				cout << "王炸绝杀！！！！！" << endl;
+//				cout << "王炸绝杀！！！！！" << endl;
 				return 1;
 			}
 			else {
 				if (doubleCard(a, b) == 1)
 				{
-					cout << "对牌" << endl;
+	//				cout << "对牌" << endl;
 					
 					return 1;
 				}
 				else if (doubleCard(a, b) == 0) {
 
-					cout << "小了" << endl;
+	//				cout << "小了" << endl;
 					return 0;
 				}
 				else if (doubleCard(a, b) == 2) {
-					cout << "不符合规范" << endl;
+//					cout << "不符合规范" << endl;
 					return 0;
 				}
 			}
@@ -743,17 +748,17 @@ int right(int* a, int* b, int c)
 		else if (num == 3) {
 			if (threeCard(a, b) == 1)
 			{
-				cout << "三牌" << endl;
+//				cout << "三牌" << endl;
 				
 				return 1;
 			}
 			else if (threeCard(a, b) == 0) {
 
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (threeCard(a, b) == 2) {
-				cout << "不符合规范" << endl;
+//				cout << "不符合规范" << endl;
 				return 0;
 			}
 		}
@@ -761,92 +766,92 @@ int right(int* a, int* b, int c)
 		else if (num == 4) {
 			if (a[0]==a[1]&&a[1]==a[2]&&a[2]==a[3]&&b[0]==b[1]&&b[1]==b[2]&&b[2]==b[3]) {
 				if (BoomCard(a, b) == 0) {
-					cout << "小了" << endl;
+//					cout << "小了" << endl;
 					return 0;
 				}
 				else if (BoomCard(a, b) == 1) {
-					cout << "又是炸弹！！！" << endl;
+	//				cout << "又是炸弹！！！" << endl;
 					
 					return 1;
 				}
 				else if (BoomCard(a, b) == 2) {
-					cout << "不符合规范" << endl;
-					return 0;
+//					cout << "不符合规范" << endl;
+   				    return 0;
 				}
 			}
 			else {
 				if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
 					
-					cout << "炸弹压死！！！！" << endl;
+//					cout << "炸弹压死！！！！" << endl;
 					return 1;
 				}
 
 				else if (plane1Card(a, b) == 0) {
-					cout << "小了" << endl;
+//					cout << "小了" << endl;
 					return 0;
 				}
 				else if (plane1Card(a, b) == 1) {
-					cout << "三带一" << endl;
+//					cout << "三带一" << endl;
 					return 1;
 				}
 				else if (plane1Card(a, b) == 2) {
-					cout << "不符合规范" << endl;
+//					cout << "不符合规范" << endl;
 					return 0;
 				}
 			}
 		}
 
 		else if (num == 5) {
-			if (plane1Card(a, b) == 0) {
-				cout << "小了" << endl;
+			if (plane2Card(a, b) == 0) {
+//				cout << "小了" << endl;
 				return 0;
 			}
-			else if (plane1Card(a, b) == 1) {
-				cout << "三带一" << endl;
+			else if (plane2Card(a, b) == 1) {
+//				cout << "三带一" << endl;
 				return 1;
 			}
 			else if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+//				cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+//				cout << "顺子" << endl;
 				return 1;
 			}
 
 			else  {
-				cout << "不符合规范" << endl;
+//				cout << "不符合规范" << endl;
 				return 0;
 			}
 		}
 
 		else if (num == 6) {
 		    if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+	//			cout << "顺子" << endl;
 				return 1;
 			}
 			else if (ifShunzi2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi2Card(a, b) == 1) {
-				cout << "连对" << endl;
+	//			cout << "连对" << endl;
 				return 1;
 			}
 			else if (ifShunzi3Card(a, b) == 0) {
-				cout << "小了" << endl;
+//				cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi3Card(a, b) == 1) {
-				cout << "飞机没翅膀" << endl;
+	//			cout << "飞机没翅膀" << endl;
 				return 1;
 			}
 			else  {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
 
@@ -854,46 +859,46 @@ int right(int* a, int* b, int c)
 
 		else if (num == 7) {
 		    if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+	//			cout << "顺子" << endl;
 				return 1;
 			}
 			else {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
 
         }
 		else if (num == 8) {
 		    if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+	//			cout << "顺子" << endl;
 				return 1;
 			}
 			else if (ifShunzi2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi2Card(a, b) == 1) {
-				cout << "连对" << endl;
+	//			cout << "连对" << endl;
 				return 1;
 			}
 			else if (plane2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (plane2Card(a, b) == 1) {
-				cout << "飞机" << endl;
+	//			cout << "飞机" << endl;
 				return 1;
 			}
 			else {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
 		 
@@ -901,102 +906,102 @@ int right(int* a, int* b, int c)
 
 		else if (num == 9) {
 		    if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+	//			cout << "顺子" << endl;
 				return 1;
 			}
 			else if (ifShunzi3Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi3Card(a, b) == 1) {
-				cout << "飞机没翅膀" << endl;
+	//			cout << "飞机没翅膀" << endl;
 				return 1;
 			}
 			else  {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
         }
 		else if (num == 10) {
 		    if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+	//			cout << "顺子" << endl;
 				return 1;
 			}
 			else if (ifShunzi2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi2Card(a, b) == 1) {
-				cout << "连对" << endl;
+	//			cout << "连对" << endl;
 				return 1;
 			}
 			else if (plane2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (plane2Card(a, b) == 1) {
-				cout << "飞机" << endl;
+	//			cout << "飞机" << endl;
 				return 1;
 			}
 			else {
-				cout << "不符合规范" << endl;
-				return 0;
+//				cout << "不符合规范" << endl;
+			return 0;
 			}
         }
 		else if (num == 11) {
 		    if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+//				cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+//				cout << "顺子" << endl;
 				return 1;
 			}
 			else {
-				cout << "不符合规范" << endl;
+//				cout << "不符合规范" << endl;
 				return 0;
 			}
 
         }
 		else if (num == 12) {
 		    if (ifShunzi1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi1Card(a, b) == 1) {
-				cout << "顺子" << endl;
+	//			cout << "顺子" << endl;
 				return 1;
 			}
 			else if (ifShunzi2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi2Card(a, b) == 1) {
-				cout << "连对" << endl;
+	//			cout << "连对" << endl;
 				return 1;
 			}
 			else if (ifShunzi3Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi3Card(a, b) == 1) {
-				cout << "飞机没翅膀" << endl;
+	//			cout << "飞机没翅膀" << endl;
 				return 1;
 			}
 			else if (plane1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (plane1Card(a, b) == 1) {
-				cout << "三带一" << endl;
+	//			cout << "三带一" << endl;
 				return 1;
 			}
 			else  {
@@ -1015,53 +1020,53 @@ int right(int* a, int* b, int c)
 				return 1;
 			}
 			else {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
 
         }
 		else if (num == 15) {
 		    if (ifShunzi3Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi3Card(a, b) == 1) {
-				cout << "飞机没翅膀" << endl;
+	//			cout << "飞机没翅膀" << endl;
 				return 1;
 			}
 			else if (plane2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (plane2Card(a, b) == 1) {
-				cout << "飞机" << endl;
+	//			cout << "飞机" << endl;
 				return 1;
 			}
 			else {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
         }
 		else if (num == 16) {
 		  
 		    if (ifShunzi2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi2Card(a, b) == 1) {
-				cout << "连对" << endl;
+	//			cout << "连对" << endl;
 				return 1;
 			}
 			else if (plane1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (plane1Card(a, b) == 1) {
-				cout << "三带一" << endl;
+	//			cout << "三带一" << endl;
 				return 1;
 			}
 			else  {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
 
@@ -1069,23 +1074,23 @@ int right(int* a, int* b, int c)
 		else if (num == 18) {
 
 		    if (ifShunzi2Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi2Card(a, b) == 1) {
-				cout << "连对" << endl;
+	//			cout << "连对" << endl;
 				return 1;
 			}
 			else if (ifShunzi3Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi3Card(a, b) == 1) {
-				cout << "飞机没翅膀" << endl;
+	//			cout << "飞机没翅膀" << endl;
 				return 1;
 			}
 			else  {
-				cout << "不符合规范" << endl;
+	//			cout << "不符合规范" << endl;
 				return 0;
 			}
 
@@ -1093,37 +1098,37 @@ int right(int* a, int* b, int c)
 		else if (num == 20) {
 		  
 		    if (ifShunzi2Card(a, b) == 0) {
-				cout << "小了" << endl;
+		//		cout << "小了" << endl;
 				return 0;
 			}
 			else if (ifShunzi2Card(a, b) == 1) {
-				cout << "连对" << endl;
+		//		cout << "连对" << endl;
 				return 1;
 			}
 			else if (plane1Card(a, b) == 0) {
-				cout << "小了" << endl;
+	//			cout << "小了" << endl;
 				return 0;
 			}
 			else if (plane1Card(a, b) == 1) {
-				cout << "三带一" << endl;
+	//			cout << "三带一" << endl;
 				return 1;
 			}
 			else if (plane2Card(a, b) == 0) {
-				cout << "小了" << endl;
-				return 0;
+	//			cout << "小了" << endl;
+	 		    return 0;
 			}
 			else if (plane2Card(a, b) == 1) {
-				cout << "飞机" << endl;
+		//		cout << "飞机" << endl;
 				return 1;
 			}
 			else  {
-				cout << "不符合规范" << endl;
+	//		cout << "不符合规范" << endl;
 				return 0;
 			}
 
         }
 		else  {
-		cout << "不符合规范" << endl;
+	//	cout << "不符合规范" << endl;
 		return 0;
 	    }
 
@@ -1428,6 +1433,7 @@ void endgame(int*a,int * b,int *c,int a1,int a2 ,int a3){
 	}
 
 	if (a1 == 1) {
+		system("cls");
 		if (x == 0) {
 			cout << "地主赢力！";
 			exit(100);
@@ -1438,6 +1444,7 @@ void endgame(int*a,int * b,int *c,int a1,int a2 ,int a3){
 		}
 	}
 	else if (a2 == 1) {
+		system("cls");
 		if (y == 0) {
 			cout << "地主赢力！";
 			exit(100);
@@ -1448,6 +1455,7 @@ void endgame(int*a,int * b,int *c,int a1,int a2 ,int a3){
 		}
 	}
 	else if (a3 == 1) {
+		system("cls");
 		if (z == 0) {
 			cout << "地主赢力！";
 			exit(100);
