@@ -1,6 +1,29 @@
 #include"function.h"
 using namespace std;
 
+
+//字体
+void SetFont(int size = 30) {
+	CONSOLE_FONT_INFOEX cfi;
+	cfi.cbSize = sizeof cfi;
+	cfi.nFont = 0;
+	cfi.dwFontSize.X = 0;
+	cfi.dwFontSize.Y = size;  //设置字体大小
+	cfi.FontFamily = FF_DONTCARE;
+	cfi.FontWeight = FW_NORMAL; //字体粗细 FW_BOLD
+	wcscpy_s(cfi.FaceName, L"黑体");  //设置字体，必须是控制台已有的
+	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+	//获得当前字体
+	//HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	//CONSOLE_FONT_INFO consoleCurrentFont;
+	//GetCurrentConsoleFont(handle, FALSE, &consoleCurrentFont);
+}
+
+
+
+
+
+
 //隐藏光标的函数
 void HideCursor() {
 
@@ -32,19 +55,6 @@ void gotoxy(unsigned char x, unsigned char y) {
 	SetConsoleCursorPosition(hout, cor);
 }
 
-//菜单函数
-void menu() {
-	cout << setfill(' ') << setw(35) << "斗地主！！！！" << endl;
-	cout << setfill(' ') << setw(35) << "输入“1”以开始游戏!" << endl;
-	cout << setfill(' ') << setw(35) << "输入“2”以退出游戏!" << endl;
-
-	
-
-
-
-	int i;
-	cin >> i;
-}
 
 
 
@@ -328,14 +338,14 @@ int rightFirst(int* a) {
 	}
 
 	if (num == 1) {
-		tempFunction = 1;           //暂存值的牌的类型为单牌	
+		tempFunction = 101;           //暂存值的牌的类型为单牌	
 	//	cout << "你打出了单牌\n";
 		return 1;
 	}
 
 	else if (num == 2) {
 		if (a[0] == a[1]) {
-			tempFunction = 2;      //暂存值的牌的类型为对牌	
+			tempFunction = 202;      //暂存值的牌的类型为对牌	
 	//		cout << "你打出了对牌\n";
 			return 1;
 		}
@@ -347,7 +357,7 @@ int rightFirst(int* a) {
 
 	else if (num == 3) {
 		if (a[0] == a[1] && a[1] == a[2]) {
-			tempFunction = 3;         //暂存值的牌的类型为三牌	
+			tempFunction = 1303;         //暂存值的牌的类型为三牌	
 	//		cout << "你打出了三张一样的牌\n";
 			return 1;
 		}
@@ -359,13 +369,13 @@ int rightFirst(int* a) {
 
 	else if (num == 4) {
 		if (a[0] == a[1] && a[1] == a[2] && a[2] == a[3]) {
-			tempFunction = 100;         //暂存值的牌的类型为炸弹	
+			tempFunction = 1;         //暂存值的牌的类型为炸弹	
 
 	//		cout << "你直接打出了炸弹！!!!\n";
 			return 1;
 		}
 		else if ((a[0] == a[1] && a[1] == a[2] && a[2] != a[3]) || (a[0] != a[1] && a[1] == a[2] && a[2] == a[3])) {
-			tempFunction = 4;          //暂存值的牌的类型为三带一
+			tempFunction = 2104;          //暂存值的牌的类型为三带一
 	//		cout << "你打出了三带一\n";
 			return 1;
 		}
@@ -377,12 +387,12 @@ int rightFirst(int* a) {
 
 	else if (num == 5) {
 		if (ifShunzi1(a)) {
-			tempFunction = 51;         //暂存值的牌的类型为顺子-5	
+			tempFunction = 1105;         //暂存值的牌的类型为顺子-5	
 	//		cout << "你打出了5张顺子\n";
 			return 1;
 		}
 		if (plane2(a)) {
-			tempFunction = 50;        //暂存值的牌的类型为 三带二
+			tempFunction = 2205;        //暂存值的牌的类型为 三带二
 	//		cout << "你打出了三带一对\n";
 			return 1;
 		}
@@ -396,17 +406,17 @@ int rightFirst(int* a) {
 
 
 		if (ifShunzi1(a)) {
-			tempFunction = 61;         //暂存值的牌的类型为顺子-6
+			tempFunction = 1106;         //暂存值的牌的类型为顺子-6
 	//		cout << "你打出了6张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
-			tempFunction = 62;         //暂存值的牌的类型为双顺子-6
+			tempFunction = 1206;         //暂存值的牌的类型为双顺子-6
 	//		cout << "你打出了6张的双顺子\n";
 			return 1;
 		}
 		else if (ifShunzi3(a)) {
-			tempFunction = 63;         //暂存值的牌的类型为三顺子-6
+			tempFunction = 1306;         //暂存值的牌的类型为三顺子-6
 	//		cout << "你打出了6张的三顺子\n";
 			return 1;
 		}
@@ -418,7 +428,7 @@ int rightFirst(int* a) {
 
 	else if (num == 7) {
 		if (ifShunzi1(a)) {
-			tempFunction = 71;         //暂存值的牌的类型为顺子-7
+			tempFunction = 1107;         //暂存值的牌的类型为顺子-7
 	//		cout << "你打出了7张顺子\n";
 			return 1;
 		}
@@ -430,17 +440,17 @@ int rightFirst(int* a) {
 
 	else if (num == 8) {
 		if (ifShunzi1(a)) {
-			tempFunction = 81;         //暂存值的牌的类型为顺子-8
+			tempFunction = 1108;         //暂存值的牌的类型为顺子-8
 	//		cout << "你打出了8张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
-			tempFunction = 82;         //暂存值的牌的类型为双顺子-8
+			tempFunction = 1208;         //暂存值的牌的类型为双顺子-8
 	//		cout << "你打出了8张的双顺子\n";
 			return 1;
 		}
 		else if (plane1(a)) {
-			tempFunction = 83;         //暂存值的牌的类型为飞机带单-8
+			tempFunction = 2108;         //暂存值的牌的类型为飞机带单-8
 	//		cout << "你打出了8张的飞机带单\n";
 			return 1;
 		}
@@ -453,12 +463,12 @@ int rightFirst(int* a) {
 
 	else if (num == 9) {
 		if (ifShunzi1(a)) {
-			tempFunction = 91;         //暂存值的牌的类型为顺子-9
+			tempFunction = 1109;         //暂存值的牌的类型为顺子-9
 	//		cout << "你打出了9张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi3(a)) {
-			tempFunction = 93;         //暂存值的牌的类型为三顺子-9
+			tempFunction = 1309;         //暂存值的牌的类型为三顺子-9
 	//		cout << "你打出了9张的三顺子\n";
 			return 1;
 		}
@@ -470,17 +480,17 @@ int rightFirst(int* a) {
 
 	else if (num == 10) {
 		if (ifShunzi1(a)) {
-			tempFunction = 81;         //暂存值的牌的类型为顺子-10
+			tempFunction = 1110;         //暂存值的牌的类型为顺子-10
 	//		cout << "你打出了10张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
-			tempFunction = 82;         //暂存值的牌的类型为双顺子-10
+			tempFunction = 1210;         //暂存值的牌的类型为双顺子-10
 	//		cout << "你打出了10张的双顺子\n";
 			return 1;
 		}
 		else if (plane2(a)) {
-			tempFunction = 85;         //暂存值的牌的类型为飞机带双-10
+			tempFunction = 2210;         //暂存值的牌的类型为飞机带双-10
 	//		cout << "你打出了10张的飞机带双\n";
 			return 1;
 		}
@@ -492,7 +502,7 @@ int rightFirst(int* a) {
 
 	else if (num == 11) {
 		if (ifShunzi1(a)) {
-			tempFunction = 111;         //暂存值的牌的类型为顺子-11
+			tempFunction = 1111;         //暂存值的牌的类型为顺子-11
 	//		cout << "你打出了11张顺子\n";
 			return 1;
 		}
@@ -504,22 +514,22 @@ int rightFirst(int* a) {
 
 	else if (num == 12) {
 		if (ifShunzi1(a)) {
-			tempFunction = 121;         //暂存值的牌的类型为顺子-12
+			tempFunction = 1112;         //暂存值的牌的类型为顺子-12
 	//		cout << "你打出了12张顺子\n";
 			return 1;
 		}
 		else if (ifShunzi2(a)) {
-			tempFunction = 122;         //暂存值的牌的类型为双顺子-12
+			tempFunction = 1212;         //暂存值的牌的类型为双顺子-12
 	//		cout << "你打出了12张的双顺子\n";
 			return 1;
 		}
 		else if (plane1(a)) {
-			tempFunction = 125;         //暂存值的牌的类型为飞机带单-12
+			tempFunction = 2112;         //暂存值的牌的类型为飞机带单-12
 	//		cout << "你打出了12张的飞机带单\n";
 			return 1;
 		}
 		else if (ifShunzi3(a)) {
-			tempFunction = 123;         //暂存值的牌的类型为三顺子-12
+			tempFunction = 1312;         //暂存值的牌的类型为三顺子-12
 	//		cout << "你打出了12张的三顺子\n";
 			return 1;
 		}
@@ -536,7 +546,7 @@ int rightFirst(int* a) {
 
 	else if (num == 14) {
 		if (ifShunzi2(a)) {
-			tempFunction = 142;         //暂存值的牌的类型为双顺子-14
+			tempFunction = 1214;         //暂存值的牌的类型为双顺子-14
 	//		cout << "你打出了14张的双顺子\n";
 			return 1;
 		}
@@ -548,13 +558,13 @@ int rightFirst(int* a) {
 
 	else if (num == 15) {
 		if (ifShunzi3(a)) {
-			tempFunction = 153;          // 暂存值的牌的类型为三顺子 - 15
+			tempFunction = 1315;          // 暂存值的牌的类型为三顺子 - 15
 	//		cout << "你打出了15张的三顺子\n";
 			return 1;
 		}
 
 		else if (plane2(a)) {
-			tempFunction = 155;         //暂存值的牌的类型为飞机带双-15
+			tempFunction = 2215;         //暂存值的牌的类型为飞机带双-15
 	//		cout << "你打出了15张的飞机带双\n";
 			return 1;
 		}
@@ -567,13 +577,13 @@ int rightFirst(int* a) {
 
 	else if (num == 16) {
 		if (ifShunzi2(a)) {
-			tempFunction = 162;          // 暂存值的牌的类型为双顺子 - 16
+			tempFunction = 1216;          // 暂存值的牌的类型为双顺子 - 16
 	//		cout << "你打出了16张的双顺子牌\n";
 			return 1;
 		}
 
 		else if (plane1(a)) {
-			tempFunction = 165;         //暂存值的牌的类型为飞机带单-16
+			tempFunction = 2116;         //暂存值的牌的类型为飞机带单-16
 	//		cout << "你打出了16张的飞机带单\n";
 			return 1;
 		}
@@ -590,13 +600,13 @@ int rightFirst(int* a) {
 
 	else if (num == 18) {
 		if (ifShunzi3(a)) {
-			tempFunction = 183;          // 暂存值的牌的类型为三顺子 - 18
+			tempFunction = 1318;          // 暂存值的牌的类型为三顺子 - 18
 	//		cout << "你打出了18张的三顺子\n";
 			return 1;
 		}
 
 		if (ifShunzi2(a)) {
-			tempFunction = 182;          // 暂存值的牌的类型为双顺子 - 18
+			tempFunction = 1218;          // 暂存值的牌的类型为双顺子 - 18
 	//		cout << "你打出了18张的双顺子\n";
 			return 1;
 		}
@@ -613,18 +623,18 @@ int rightFirst(int* a) {
 
 	else if (num == 20) {
 		if (ifShunzi2(a)) {
-			tempFunction = 202;          // 暂存值的牌的类型为双顺子 - 20
+			tempFunction = 1220;          // 暂存值的牌的类型为双顺子 - 20
 	//		cout << "你打出了20张的双顺子\n";
 			return 1;
 		}
 
 		else if (plane1(a)) {
-			tempFunction = 205;         //暂存值的牌的类型为飞机带单-20
+			tempFunction = 2120;         //暂存值的牌的类型为飞机带单-20
 	//		cout << "你打出了20张的飞机带单\n";
 			return 1;
 		}
 		else if (plane2(a)) {
-			tempFunction = 206;         //暂存值的牌的类型为飞机带双-20
+			tempFunction = 2220;         //暂存值的牌的类型为飞机带双-20
 	//		cout << "你打出了20张的飞机带双\n";
 			return 1;
 		}
@@ -1373,7 +1383,7 @@ int singleCard(int* a, int* b) {
 //形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
 //return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
 int doubleCard(int* a, int* b) {
-	if (a[0] == a[1] && tempFunction == 2) {
+	if (a[0] == a[1] && tempFunction == 202) {
 
 		if (a[0] > b[0]) {
 			return 1;
@@ -1391,7 +1401,7 @@ int doubleCard(int* a, int* b) {
 //形参a为数组类型，为要打出的牌；形参b为数组类型，为暂存的牌
 //return值为0或1,2;1和0指符合规范后是否能打出，2指不符合规范
 int threeCard(int* a, int* b) {
-	if (a[0] == a[1] && a[1] == a[2] && tempFunction == 3) {
+	if (a[0] == a[1] && a[1] == a[2] && tempFunction == 1303) {
 
 		if (a[0] > b[0]) {
 			return 1;
@@ -1417,53 +1427,67 @@ int threeCard(int* a, int* b) {
 
 
 //形参有6个，a，b，c是数组类型，a1，a2，a3是int类型；
-//a，b，c，分别代表玩家和两个ai的手牌；a1,a2,a3分别代表三个人是否是地主
+//a，b1，c2，分别代表玩家和两个ai的手牌；b2,c2是炸弹牌；a1,a2,a3分别代表三个人是否是地主
 //利用if else分情况讨论，如果手牌牌面相加=0.则打完，结束程序
-void endgame(int*a,int * b,int *c,int a1,int a2 ,int a3){
+void endgame(int* a, int* b1, int* b2, int* c1, int* c2, int a1, int a2, int a3) {
 	int x=0, y=0, z=0;
 
 	for (int i = 0; i < 20; i++) {
 		x += a[i];
 	}
 	for (int i = 0; i < 20; i++) {
-		y += b[i];
+		y += b1[i];
+		y += b2[i];
 	}
 	for (int i = 0; i < 20; i++) {
-		z += c[i];
+		z += c1[i];
+		z += c2[i];
 	}
 
 	if (a1 == 1) {
-		system("cls");
+		
 		if (x == 0) {
+			system("cls");
 			cout << "地主赢力！";
 			exit(100);
 		}
 		else if (y == 0||z==0) {
+			system("cls");
 			cout << "农民赢力！";
 			exit(100);
 		}
 	}
 	else if (a2 == 1) {
-		system("cls");
+	
 		if (y == 0) {
+			system("cls");
 			cout << "地主赢力！";
 			exit(100);
 		}
 		else if (x == 0 || z == 0) {
+			system("cls");
 			cout << "农民赢力！";
 			exit(100);
 		}
 	}
 	else if (a3 == 1) {
-		system("cls");
+		
 		if (z == 0) {
+			system("cls");
 			cout << "地主赢力！";
 			exit(100);
 		}
 		else if (y == 0 || x == 0) {
+			system("cls");
 			cout << "农民赢力！";
 			exit(100);
 		}
 	}
 }
+
+
+
+
+
+
 

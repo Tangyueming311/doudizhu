@@ -5,11 +5,11 @@
 using namespace std;
 
 //return地主值
-int player::getLL() { return ifLandlord; }
+// int player::getLL() { return ifLandlord; }
 //return手牌数组
 int* player::getHand() { return handCard; }
 //形参a为int类型，设置玩家地主值
-void player::setLL(int a) { ifLandlord = a; }
+//void player::setLL(int a) { ifLandlord = a; }
 
 //将玩家手牌数组排序
 void player::order() {
@@ -53,6 +53,9 @@ void player::chuCardFirst() {
     //Card[]  
 	//储存要打出的牌的牌值的数组，以0结尾
     //cardchu[]
+	for (int i = 0; i < 20; i++) {
+		temp[i] = 0;
+	}
 
 	int j = 0;
 	int i = 0;
@@ -77,7 +80,7 @@ void player::chuCardFirst() {
 
 //该函数时创造画布函数，初始画布以及初始手牌，为每一次最开始调用的函数
 //形参a是数字牌面数组，形参cardNum是牌数
-	mapCreat(handCard, Temp,temp2);
+	Player_Card_Creat(handCard, Temp,temp2, K_if_player_is_landlord);
 
 	while (1) {
 
@@ -153,7 +156,7 @@ void player::chuCard() {
 	getNum(Temp, handCard,temp2);
 	//该函数时创造画布函数，初始画布以及初始手牌，为每一次最开始调用的函数
 	//形参a是数字牌面数组，形参cardNum是牌数
-	mapCreat(handCard, Temp, temp2);
+	Player_Card_Creat(handCard, Temp, temp2, K_if_player_is_landlord);
 
 	
 		while (1) {
