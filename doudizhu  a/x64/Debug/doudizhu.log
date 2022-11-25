@@ -1,0 +1,10 @@
+﻿  ai.cpp
+  card.cpp
+  draw.cpp
+  function.cpp
+  main.cpp
+  player.cpp
+  正在生成代码...
+E:\vs\新建文件夹\doudizhu  a\function.cpp(1150): warning C4715: “right”: 不是所有的控件路径都返回值
+E:\vs\新建文件夹\doudizhu  a\draw.cpp(946): warning C4715: “chooseCard”: 不是所有的控件路径都返回值
+  doudizhu.vcxproj -> E:\vs\新建文件夹\doudizhu  a\x64\Debug\doudizhu.exe
