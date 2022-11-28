@@ -1,1 +1,2 @@
 E:\vs\新建文件夹\doudizhu  a\x64\Debug\doudizhu.exe
+C:\Users\汤晨\source\repos\doudizhu  a\x64\Debug\doudizhu.exe

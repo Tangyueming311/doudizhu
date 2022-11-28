@@ -6,6 +6,7 @@
 #include"ai.h"
 #include"card.h"
 #include"draw.h"
+#include"aiYY.h"
 using namespace std;
 extern int temp[20] = { 0 };       //全局变量，temp数组为出了牌后，暂存牌的数组
 extern int tempFunction = 0;       //全局变量，tempFunction为暂存的牌的类型
@@ -40,14 +41,14 @@ int main() {
 	b1.set_Card(a.getP1());
 
 	//定义ai对象b2，并将b2的手牌设置为a中的第三组基本牌
-	ai b2;
+	AI_YY b2;
 	b2.set_Card(a.getP2());
 
 
 	//三组手牌都进行排序
 	b.order();
 	b1.Order();
-	b2.Order();
+	b2.order();
 
 
 
@@ -107,7 +108,7 @@ int main() {
 	//b1.set_Hand_Num();
 
 	//b2.set_Boom();
-	b2.Order();
+	b2.order();
 	//b2.set_Hand_Num();
 
 
@@ -124,19 +125,19 @@ int main() {
 	//	cout << b.getHand()[i] << " ";
 	//}
 
-
+	b2.chaipai();
 
 	Map_Creat();
 	Landlord_Card_Creat(a.getL());
 	//Ai_Card_Creat(b1.get_Hand_Num(), b2.get_Hand_Num(), K_if_player_is_landlord);
 
-	b1.set_Left_Right(-1);
-	b2.set_Left_Right(1);
+	//b1.set_Left_Right(-1);
+	//b2.set_Left_Right(1);
 
 	b1.set_Handcard_Num();
-	b2.set_Handcard_Num();
+	//b2.set_Handcard_Num();
 
-	Ai_Card_Creat(b1.get_Handcard_Num(), b2.get_Handcard_Num(), K_if_player_is_landlord);
+	Ai_Card_Creat(b1.get_Handcard_Num(), b2.get_handCard_num_(), K_if_player_is_landlord);
 
 
 
@@ -161,8 +162,6 @@ int main() {
 	//		
 	//		
 	//		endgame(b.getHand(), b1.get_Hand(),b1.get_Hand_Boom(),b2.get_Hand(),b2.get_Hand_Boom(), K_if_player_is_landlord, b1.get_LL(), b2.get_LL());
-
-
 	//		if (tempchu == 0 || tempchu == 1) {
 	//			b.chuCard();
 	//		}
@@ -170,22 +169,17 @@ int main() {
 	//			
 	//			b.chuCardFirst();
 	//		}
-
 	//		
 	//		endgame(b.getHand(), b1.get_Hand(), b1.get_Hand_Boom(), b2.get_Hand(), b2.get_Hand_Boom(), K_if_player_is_landlord, b1.get_LL(), b2.get_LL());
-
-
 	//		if (tempchu == 0 || tempchu == 1) {
 	//			b.chuCard();
 	//		}
 	//		else {				
 	//			b.chuCardFirst();
 	//		}
-
 	//		
 	//		endgame(b.getHand(), b1.get_Hand(), b1.get_Hand_Boom(), b2.get_Hand(), b2.get_Hand_Boom(), K_if_player_is_landlord, b1.get_LL(), b2.get_LL());
 	//	}
-
 	//}
 
 
@@ -225,10 +219,10 @@ int main() {
 			Sleep(1000);
 
 			if (tempchu == 0 || tempchu == 1) {
-				b2.chuCard();
+				b2.chucard();
 			}
 			else {
-				b2.chuCardFirst();
+				b2.chucardfirst();
 			}
 			Sleep(1000);
 
@@ -258,10 +252,10 @@ int main() {
 			Sleep(1000);
 
 			if (tempchu == 0 || tempchu == 1) {
-				b2.chuCard();
+				b2.chucard();
 			}
 			else {
-				b2.chuCardFirst();
+				b2.chucardfirst();
 			}
 			Sleep(1000);
 

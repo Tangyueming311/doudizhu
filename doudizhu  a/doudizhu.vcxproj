@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ai.cpp" />
+    <ClCompile Include="aiYY.cpp" />
     <ClCompile Include="card.cpp" />
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="main.cpp" />
@@ -136,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ai.h" />
+    <ClInclude Include="aiYY.h" />
     <ClInclude Include="draw.h" />
     <ClInclude Include="function.h" />
     <ClInclude Include="player.h" />

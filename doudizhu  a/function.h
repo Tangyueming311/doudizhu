@@ -8,6 +8,7 @@
 #include<stdio.h>
 #include<cstdlib>
 #include<stdlib.h>
+#include<algorithm>
 void HideCursor();
 void gotoxy(unsigned char x, unsigned char y);
 

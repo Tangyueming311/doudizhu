@@ -1467,7 +1467,7 @@ void endgame(int* a, int* b1,  int* c1,  int a1, int a2, int a3) {
 		else if (x == 0 || z == 0) {
 			system("cls");
 			cout << "Å©ÃñÓ®Á¦£¡";
-			exit(100);
+		exit(100);
 		}
 	}
 	else if (a3 == 1) {

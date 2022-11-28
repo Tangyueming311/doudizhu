@@ -1,6 +1,7 @@
 #include"function.h"
 #include"player.h"
 #include"ai.h"
+#include"aiYY.h"
 #include"card.h"
 #include"draw.h"
 using namespace std;
@@ -73,6 +74,8 @@ int tempLeft_y = MapHeight - 10;
 
 //菜单函数
 void menu() {
+
+
 	system("cls");
 
 	gotoxy(MapLength / 2 - 3, MapHeight / 2 - 6);
@@ -100,7 +103,7 @@ void menu() {
 	gotoxy(MapLength / 2 + 10, MapHeight / 2 + 6);
 	cout << "》》";
 
-
+	gotoxy(0, 0);
 	while (1) {
 		//a,d移动箭头，按回车选中
 		key = _getch();
@@ -465,10 +468,10 @@ void Ai_Card_Creat(int left_card_num, int right_card_num,int if_player_is_landlo
 	//}
 
 	gotoxy(10, 4);
-	cout << "【AI】【1号】";
+	cout << "【AI】【乃乃】";
 	
 	gotoxy(MapLength - 22, 4);
-	cout << "【AI】【2号】";
+	cout << "【AI】【烨烨】";
 
 	
 
@@ -1203,6 +1206,7 @@ int chu(int* a,int b, int if_player_is_landlord) {
 
 //打出牌的数组，和手牌数量
 void Ai_Left_Chu(int *ai_card_chu,int ai_card_num) {
+	tempchu = 0;
 	gotoxy(27, MapHeight / 2);
 	cout << "    ";
 
@@ -1283,6 +1287,7 @@ void Ai_Left_Chu(int *ai_card_chu,int ai_card_num) {
 
 
 void Ai_Right_Chu(int* ai_card_chu, int ai_card_num) {
+	tempchu = 0;
 	gotoxy(27, 10);	
 	cout << "              ";
 	gotoxy(MapLength -40, 10);
@@ -1368,6 +1373,7 @@ void Ai_Right_Chu(int* ai_card_chu, int ai_card_num) {
 }
 
 void Ai_Left_Buchu() {
+	tempchu ++;
 	gotoxy(27, 10);
 	cout << "<----这边出牌";
 
@@ -1379,7 +1385,7 @@ void Ai_Left_Buchu() {
 
 
 void Ai_Right_Buchu() {
-
+	tempchu++;
 	gotoxy(27, 10);
 	cout << "              ";
 	gotoxy(MapLength - 40, 10);
